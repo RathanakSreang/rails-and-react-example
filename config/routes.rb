@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
-  get 'api/comments' => 'static_pages#comment'
-  post 'api/comments' => 'static_pages#create'
+  get 'api/comments' => 'comments#comment'
+  post 'api/comments' => 'comments#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

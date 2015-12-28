@@ -12,8 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require react
 //= require react_ujs
 //= require components
 //= require_tree .
+$(document).ready(function(){
+  $('.btn').click(function(e){
+    ReactDOM.render(
+    <CommentBox />, document.getElementById('content')
+    );
+    e.preventDefault();
+  });
+  ReactDOM.render(React.createElement(HelloMessage, {name: "Rathanak"}), document.getElementById('id_name'));
+  ReactDOM.render(<Timer />, document.getElementById('id_time'));
+  // ReactDOM.render(React.createElement(CommentBox, null,{}), document.getElementById('content'))
+  ReactDOM.render(<CommentBox url="/api/comments" pollInterval={2000} />, 
+    document.getElementById('content'));
+});

@@ -12,6 +12,6 @@ var Timer = React.createClass({
     clearInterval(this.interval);
   },
   render: function() {
-    return (<div>{this.state.name}: {this.state.secondsElapsed}</div>);
+    return (React.createElement('div',{}, this.state.name + ":" + this.state.secondsElapsed));
   }
 });

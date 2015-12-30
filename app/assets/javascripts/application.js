@@ -12,20 +12,27 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require owl.carousel
 //= require react
 //= require react_ujs
 //= require components
 //= require_tree .
 $(document).ready(function(){
-  $('.btn').click(function(e){
-    ReactDOM.render(
-    <CommentBox />, document.getElementById('content')
-    );
-    e.preventDefault();
-  });
   ReactDOM.render(React.createElement(HelloMessage, {name: "Rathanak"}), document.getElementById('id_name'));
-  ReactDOM.render(<Timer />, document.getElementById('id_time'));
-  // ReactDOM.render(React.createElement(CommentBox, null,{}), document.getElementById('content'))
-  ReactDOM.render(<CommentBox url="/api/comments" pollInterval={2000} />, 
-    document.getElementById('content'));
+  ReactDOM.render(React.createElement(Timer), document.getElementById('id_time'));
+  ReactDOM.render(React.createElement(CommentBox, {url: "/api/comments", pollInterval: 2000}), document.getElementById('content'));
+  ReactDOM.render(React.createElement(OwlItems, {url: "/api/owlimage"}), document.getElementById('owl-react'));
+});
+$(document).ready(function() {
+ 
+  $("#owl-demo").owlCarousel({
+ 
+      autoPlay: 3000, //Set AutoPlay to 3 seconds
+ 
+      items : 4,
+      itemsDesktop : [1199,3],
+      itemsDesktopSmall : [979,3]
+ 
+  });
+ 
 });

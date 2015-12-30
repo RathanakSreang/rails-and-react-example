@@ -6,6 +6,8 @@ class StaticPagesController < ApplicationController
   end
 
   def create
-    
+  end
+
+  def home
   end
 end

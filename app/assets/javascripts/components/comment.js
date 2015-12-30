@@ -39,29 +39,19 @@ var CommentBox = React.createClass({displayName: 'CommentBox',
     });
   },
   render: function() {
-    return (
-      <div className="commentBox">
-        <h1>Comments</h1>
-        <CommentList data={this.state.data} />
-        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
-      </div>
+    return (React.createElement('div', {className: "commentBox"},
+      React.createElement('h1', "Comments"),
+      React.createElement(CommentList, {data: this.state.data}),
+      React.createElement(CommentForm, {onCommentSubmit: this.handleCommentSubmit}))
     );
   }
 });
 var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function(comment) {
-      return (
-        <Comment author={comment.author} key={comment.id}>
-          {comment.text}
-        </Comment>
-      );
+      return (React.createElement(Comment, {author: comment.author, key: comment.id}, comment.text));
     });
-    return (
-      <div className="commentList">
-        {commentNodes}
-      </div>
-    );
+    return (React.createElement('div', {className: 'commentList'}, commentNodes));
   }
 });
 var CommentForm = React.createClass({
@@ -85,28 +75,18 @@ var CommentForm = React.createClass({
     this.setState({author: '', text: ''});
   },
   render: function(){
-    return(
-      <form className="commentForm" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="your name" value={this.state.author} onChange={this.handleAuthorChange} />
-        <input type="text" placeholder="Say something .." value={this.state.text} onChange={this.handleTextChange} />
-        <input type="submit" placeholder="Post" />
-      </form>
+    return(React.createElement('form', {className: 'commentForm', onSubmit: this.handleSubmit},
+      React.createElement('input', {type: 'text', placeholder: 'your name', value: this.state.author, onChange: this.handleAuthorChange}),
+      React.createElement('input', {type: 'text', placeholder: 'Say Something ..', value: this.state.text, onChange: this.handleTextChange}),
+      React.createElement('input', {type: 'submit', placeholder: 'Post'}))
     );
   }
 });
 var Comment = React.createClass({
-  // rawMarkup: function() {
-  //   var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
-  //   return {__html: rawMarkup};
-  // }
   render: function() {
-    return (
-      <div className="comment">
-        <h2 className="commentAuthor">
-          {this.props.author}
-        </h2>
-        {this.props.children}
-      </div>
+    return (React.createElement('div', {className: 'comment'},
+      React.createElement('h2', {className: 'commentAuthor'}, this.props.author),
+      this.props.children)
     );
   }
 });
